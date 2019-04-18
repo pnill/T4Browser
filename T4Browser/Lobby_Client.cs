@@ -9,7 +9,7 @@ using static Google.Protobuf.Pack.Packet.Types.Type;
 using static Google.Protobuf.Pack.Packet;
 using System.Net.Sockets;
 using System.Net;
-
+using System.Windows.Forms;
 
 namespace T4Browser
 {
@@ -41,6 +41,8 @@ namespace T4Browser
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Could not connect to server!");
+
                 lobby.Invoke(() =>
                 {
                     lobby.Close();

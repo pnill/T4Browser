@@ -24,24 +24,24 @@ namespace Google.Protobuf.Pack {
     static T4BrowserReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg90NGJyb3dzZXIucHJvdG8i4gEKBlBhY2tldBIaCgR0eXBlGAEgASgOMgwu",
+            "Cg90NGJyb3dzZXIucHJvdG8i8gEKBlBhY2tldBIaCgR0eXBlGAEgASgOMgwu",
             "UGFja2V0LlR5cGUSHgoNcGxheWVyX3N0YXR1cxgCIAEoCzIHLnBsYXllchIa",
             "CgRjaGF0GAMgASgLMgwuY2hhdF9wYWNrZXQSIgoObG9iYnlfc25hcHNob3QY",
-            "BCABKAsyCi5ob3N0X3NuYXAiXAoEVHlwZRILCgdpbnZhbGlkEAASEAoMam9p",
+            "BCABKAsyCi5ob3N0X3NuYXAibAoEVHlwZRILCgdpbnZhbGlkEAASEAoMam9p",
             "bl9tZXNzYWdlEAESEAoMY2hhdF9tZXNzYWdlEAISEQoNaG9zdF9zbmFwc2hv",
-            "dBADEhAKDHF1aXRfbWVzc2FnZRAEIhsKC2pvaW5fcGFja2V0EgwKBG5hbWUY",
-            "ASABKAkiLAoLY2hhdF9wYWNrZXQSDAoEbmFtZRgBIAEoCRIPCgdtZXNzYWdl",
-            "GAIgASgJIhYKBnBsYXllchIMCgRuYW1lGAEgASgJIpwBCgtnYW1lX29wdGlv",
-            "bhImCgtvcHRpb25fdHlwZRgBIAEoDjIRLmdhbWVfb3B0aW9uLlR5cGUSDQoF",
-            "aW5kZXgYAiABKAUSDgoGb3B0aW9uGAMgASgIIkYKBFR5cGUSCwoHaW52YWxp",
-            "ZBAAEhAKDG9XZWFwb25BdmFpbBABEhAKDG9XZWFwb25TcGF3bhACEg0KCW9H",
-            "YW1lUGxheRADIuMBCglob3N0X3NuYXASIgoJc25hcF90eXBlGAEgASgOMg8u",
-            "aG9zdF9zbmFwLlR5cGUSEAoIbWFwX25hbWUYAiABKAkSEQoJZ2FtZV90eXBl",
-            "GAMgASgFEhIKCmZyYWdfbGltaXQYBCABKAUSEgoKdGltZV9saW1pdBgFIAEo",
-            "BRIdCgdvcHRpb25zGAYgAygLMgwuZ2FtZV9vcHRpb24SGAoHcGxheWVycxgH",
-            "IAMoCzIHLnBsYXllciIsCgRUeXBlEgwKCHRJbnZhbGlkEAASCQoFdEpvaW4Q",
-            "ARILCgd0VXBkYXRlEAJCF6oCFEdvb2dsZS5Qcm90b2J1Zi5QYWNrYgZwcm90",
-            "bzM="));
+            "dBADEhAKDHF1aXRfbWVzc2FnZRAEEg4KCnN0YXJ0X2dhbWUQBSIbCgtqb2lu",
+            "X3BhY2tldBIMCgRuYW1lGAEgASgJIiwKC2NoYXRfcGFja2V0EgwKBG5hbWUY",
+            "ASABKAkSDwoHbWVzc2FnZRgCIAEoCSIWCgZwbGF5ZXISDAoEbmFtZRgBIAEo",
+            "CSKcAQoLZ2FtZV9vcHRpb24SJgoLb3B0aW9uX3R5cGUYASABKA4yES5nYW1l",
+            "X29wdGlvbi5UeXBlEg0KBWluZGV4GAIgASgFEg4KBm9wdGlvbhgDIAEoCCJG",
+            "CgRUeXBlEgsKB2ludmFsaWQQABIQCgxvV2VhcG9uQXZhaWwQARIQCgxvV2Vh",
+            "cG9uU3Bhd24QAhINCglvR2FtZVBsYXkQAyLjAQoJaG9zdF9zbmFwEiIKCXNu",
+            "YXBfdHlwZRgBIAEoDjIPLmhvc3Rfc25hcC5UeXBlEhAKCG1hcF9uYW1lGAIg",
+            "ASgJEhEKCWdhbWVfdHlwZRgDIAEoBRISCgpmcmFnX2xpbWl0GAQgASgFEhIK",
+            "CnRpbWVfbGltaXQYBSABKAUSHQoHb3B0aW9ucxgGIAMoCzIMLmdhbWVfb3B0",
+            "aW9uEhgKB3BsYXllcnMYByADKAsyBy5wbGF5ZXIiLAoEVHlwZRIMCgh0SW52",
+            "YWxpZBAAEgkKBXRKb2luEAESCwoHdFVwZGF0ZRACQheqAhRHb29nbGUuUHJv",
+            "dG9idWYuUGFja2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -296,6 +296,7 @@ namespace Google.Protobuf.Pack {
         [pbr::OriginalName("chat_message")] ChatMessage = 2,
         [pbr::OriginalName("host_snapshot")] HostSnapshot = 3,
         [pbr::OriginalName("quit_message")] QuitMessage = 4,
+        [pbr::OriginalName("start_game")] StartGame = 5,
       }
 
     }

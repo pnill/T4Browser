@@ -18,7 +18,8 @@ using static Google.Protobuf.Pack.game_option.Types.Type;
 using static Google.Protobuf.Pack.host_snap.Types.Type;
 using static Google.Protobuf.Pack.Packet;
 using System.Collections.Concurrent;
-
+using IniParser;
+using IniParser.Model;
 
 
 namespace T4Browser
@@ -266,6 +267,13 @@ namespace T4Browser
 
         private void ClientConnect()
         {
+            var parser = new FileIniDataParser();
+            IniData data = new IniData();
+            data["T4MP"]["server"] = "0";
+            data["T4MP"]["server_ip"] = IP_Address;
+            data["T4MP"]["port"] = remote_port.ToString(); // Game uses UDP where browser uses TCP so port re-use is fine.
+            parser.WriteFile(browser.GameDir + "/T4MP.ini", data);
+
             lobby_client = new Lobby_Client(this, IP_Address, remote_port);
             lobby_client.Connect();
         }
@@ -325,6 +333,12 @@ namespace T4Browser
 
         private void HostServer()
         {
+            var parser = new FileIniDataParser();
+            IniData data = new IniData();
+            data["T4MP"]["server"] = "1";
+            data["T4MP"]["port"] = remote_port.ToString();
+            parser.WriteFile(browser.GameDir + "/T4MP.ini", data);
+
             lobby_server = new Lobby_Server(this, remote_port);
             lobby_server.Listen();   
         }
@@ -379,8 +393,10 @@ namespace T4Browser
             thisbox.ScrollToCaret();
         }
 
+        private void startGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 
 

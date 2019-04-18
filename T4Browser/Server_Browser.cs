@@ -22,6 +22,7 @@ namespace T4Browser
         public Player_Options player_options = null;
         public string PlayerName;
         public string GamePath;
+        public string GameDir;
         public Server_Browser()
         {
             InitializeComponent();
@@ -114,7 +115,7 @@ namespace T4Browser
                 }
 
                 if(ping > 20 && ping < 90)
-                {
+                { 
                     cell.Style = new DataGridViewCellStyle { ForeColor = Color.DarkGreen };
                 }
 
@@ -130,6 +131,7 @@ namespace T4Browser
                 var parser = new FileIniDataParser();
                 IniData data = parser.ReadFile("T4Browser.ini");
                 this.GamePath = data["browser"]["game_path"];
+                this.GameDir = Path.GetDirectoryName(this.GamePath);
                 this.PlayerName = data["browser"]["player_name"];
             }catch(Exception ex){
                 

@@ -214,6 +214,7 @@
             this.ServerPort.Size = new System.Drawing.Size(51, 20);
             this.ServerPort.TabIndex = 3;
             this.ServerPort.Text = "9001";
+            this.ServerPort.TextChanged += new System.EventHandler(this.ServerPort_TextChanged);
             // 
             // label2
             // 

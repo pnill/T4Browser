@@ -77,14 +77,22 @@ namespace T4Browser
 
             GamePathText.Text = odiag.FileName;
             browse.GamePath = GamePathText.Text;
-
             string directory = Path.GetDirectoryName(odiag.FileName);
-            if(!File.Exists(directory+"/t4mp.dll"))
+            browse.GameDir = directory;
+
+            if (!File.Exists(directory+"/t4mp.dll") || !File.Exists(directory+"/T4MP.exe") || !File.Exists(directory+"\\T4MP\\multiplayerjoin.ati"))
             {
                 DialogResult dialogResult = MessageBox.Show("The Turok:Evolution MP mod was not found to be installed!\r\n\r\nWould you like the browser to install it?", "Warning - MOD NOT FOUND!", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    MessageBox.Show("This doesn't do anything yet, install manually!");
+                    File.Copy("Mods/t4mp.dll", directory + "/t4mp.dll",true);
+                    File.Copy("Mods/T4MP.exe", directory + "/T4MP.exe",true); // This is a modified exe which will load t4mp.dll, this way we don't overwrite the original.
+                    File.Copy("Mods/d3d9.dll", directory + "/d3d9.dll", true); // have to be careful with this one, though it mostly fixes bugs.
+                    File.Copy("Mods/D3dHook.dll", directory + "/D3dHook.dll", true);
+                    File.Copy("Mods/hook.ini", directory + "/hook.ini", true); // This will have to be modified later to have the appropriate path.
+                    Directory.CreateDirectory(directory + "/T4MP");
+                    File.Copy("Mods/multiplayerjoin.ati", directory + "T4MP/multiplayerjoin.ati",true);
+                    File.Copy("Mods/mutliplayerjoin.txm", directory + "data/text/mutliplayerjoin.txm", true);
                 }
                 else if (dialogResult == DialogResult.No)
                 {

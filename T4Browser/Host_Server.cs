@@ -114,12 +114,13 @@ namespace T4Browser
 
 
 
-            History hist = new History();
+            History hist = new History(browser.GameDir);
             hist.map_id = map_select.SelectedIndex;
             hist.time_limit = time_limit.Text;
             hist.frag_limit = frag_limit.Text;
            
-            hist.Save();
+
+            hist.Save(gameTypeOptions,WeaponSet,WeaponSpawn);
 
             set_frag_limit = Convert.ToInt32(frag_limit.Text);
             set_time_limit = Convert.ToInt32(time_limit.Text);
@@ -215,6 +216,11 @@ namespace T4Browser
             }
 
             this.Close();
+
+        }
+
+        private void ServerPort_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

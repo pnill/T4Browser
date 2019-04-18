@@ -358,6 +358,7 @@
             this.startGameToolStripMenuItem.Name = "startGameToolStripMenuItem";
             this.startGameToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.startGameToolStripMenuItem.Text = "Start Game";
+            this.startGameToolStripMenuItem.Click += new System.EventHandler(this.startGameToolStripMenuItem_Click);
             // 
             // Lobby
             // 

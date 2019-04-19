@@ -20,6 +20,7 @@ using static Google.Protobuf.Pack.Packet;
 using System.Collections.Concurrent;
 using IniParser;
 using IniParser.Model;
+using System.Diagnostics;
 
 
 namespace T4Browser
@@ -33,6 +34,7 @@ namespace T4Browser
         Lobby_Client lobby_client = null;
         public Packet Host_Options_Pack = null;
         int players_in_server = 0;
+        int map_id = 0;
 
         string IP_Address = "";
         int remote_port = 0;
@@ -114,13 +116,17 @@ namespace T4Browser
              * Make sure we grab existing players.
              */
 
-            if(pack.LobbySnapshot.SnapType == TJoin)
+            if (pack.LobbySnapshot.SnapType == TJoin)
             {
-                foreach( player player_pack in pack.LobbySnapshot.Players)
+                foreach (player player_pack in pack.LobbySnapshot.Players)
                 {
-                    if(player_pack.Name != player_name)
-                        AddPlayer(player_pack.Name,null,true);
+                    if (player_pack.Name != player_name)
+                        AddPlayer(player_pack.Name, null, true);
                 }
+            }
+            else
+            {
+                AddChatText("Server Notice", "The host has updated game options!");
             }
 
             /* Whether we're just joining or host changed options, we need to update this */
@@ -128,6 +134,7 @@ namespace T4Browser
             time_limit_text.Text = pack.LobbySnapshot.TimeLimit.ToString();
             map_text.Text = pack.LobbySnapshot.MapName.ToString();
             player_count.Text = "Players: " + players_in_server + " / 16";
+            map_id = pack.LobbySnapshot.MapId;
 
             foreach(game_option goption in pack.LobbySnapshot.Options)
             {
@@ -144,6 +151,8 @@ namespace T4Browser
                     case OWeaponSpawn:
                         WeaponSpawn_List.SetItemChecked(goption.Index, goption.Option);
                      break;
+
+                    
                 }
             }
 
@@ -194,6 +203,7 @@ namespace T4Browser
             Host_Options_Pack.LobbySnapshot.TimeLimit = host_form.set_time_limit;
             Host_Options_Pack.LobbySnapshot.MapName = map_text.Text;
             Host_Options_Pack.LobbySnapshot.GameType = 2; // Place holder, we only support death match for now.
+            Host_Options_Pack.LobbySnapshot.MapId = host_form.set_map.SelectedIndex;
 
             for (int i = 0; i < host_form.game_option.Items.Count; i++)
             {
@@ -395,7 +405,42 @@ namespace T4Browser
 
         private void startGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            chat_packet chat_pack = new chat_packet
+            {
+                Name = "Server Notice",
+                Message = "The host is starting the game..."
+            };
 
+            Packet chat_pack_parent = new Packet
+            {
+                Type = ChatMessage,
+                Chat = chat_pack.Clone()
+            };
+
+            lobby_server.SendPacketToAll(chat_pack_parent);
+
+            AddChatText("Server Notice", "Starting the game...");
+            Process.Start(browser.GameDir+"\\T4MP.exe");
+            
+            /* Tell others to start game after...
+             * Should possibly get some IPC going to only tell others to start after level load in-case host has slow PC.
+             * That or force the client games to freeze the player in place and broadcast a 'connecting' message on the screen.
+             */
+            Packet sgame_pack = new Packet();
+            sgame_pack.Type = StartGame;
+
+            lobby_server.SendPacketToAll(sgame_pack);
+        }
+
+        public void GameStart()
+        {
+            History hist = new History(browser.GameDir);
+            hist.map_id = map_id;
+            hist.Save(GameOptions_List,WeaponAllowed_List,WeaponSpawn_List);
+
+            Process.Start(browser.GameDir + "\\T4MP.exe");
+
+           
         }
     }
 

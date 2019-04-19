@@ -35,13 +35,13 @@ namespace Google.Protobuf.Pack {
             "CSKcAQoLZ2FtZV9vcHRpb24SJgoLb3B0aW9uX3R5cGUYASABKA4yES5nYW1l",
             "X29wdGlvbi5UeXBlEg0KBWluZGV4GAIgASgFEg4KBm9wdGlvbhgDIAEoCCJG",
             "CgRUeXBlEgsKB2ludmFsaWQQABIQCgxvV2VhcG9uQXZhaWwQARIQCgxvV2Vh",
-            "cG9uU3Bhd24QAhINCglvR2FtZVBsYXkQAyLjAQoJaG9zdF9zbmFwEiIKCXNu",
+            "cG9uU3Bhd24QAhINCglvR2FtZVBsYXkQAyLzAQoJaG9zdF9zbmFwEiIKCXNu",
             "YXBfdHlwZRgBIAEoDjIPLmhvc3Rfc25hcC5UeXBlEhAKCG1hcF9uYW1lGAIg",
             "ASgJEhEKCWdhbWVfdHlwZRgDIAEoBRISCgpmcmFnX2xpbWl0GAQgASgFEhIK",
-            "CnRpbWVfbGltaXQYBSABKAUSHQoHb3B0aW9ucxgGIAMoCzIMLmdhbWVfb3B0",
-            "aW9uEhgKB3BsYXllcnMYByADKAsyBy5wbGF5ZXIiLAoEVHlwZRIMCgh0SW52",
-            "YWxpZBAAEgkKBXRKb2luEAESCwoHdFVwZGF0ZRACQheqAhRHb29nbGUuUHJv",
-            "dG9idWYuUGFja2IGcHJvdG8z"));
+            "CnRpbWVfbGltaXQYBSABKAUSDgoGbWFwX2lkGAYgASgFEh0KB29wdGlvbnMY",
+            "ByADKAsyDC5nYW1lX29wdGlvbhIYCgdwbGF5ZXJzGAggAygLMgcucGxheWVy",
+            "IiwKBFR5cGUSDAoIdEludmFsaWQQABIJCgV0Sm9pbhABEgsKB3RVcGRhdGUQ",
+            "AkIXqgIUR29vZ2xlLlByb3RvYnVmLlBhY2tiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -50,7 +50,7 @@ namespace Google.Protobuf.Pack {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Pack.chat_packet), global::Google.Protobuf.Pack.chat_packet.Parser, new[]{ "Name", "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Pack.player), global::Google.Protobuf.Pack.player.Parser, new[]{ "Name" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Pack.game_option), global::Google.Protobuf.Pack.game_option.Parser, new[]{ "OptionType", "Index", "Option" }, null, new[]{ typeof(global::Google.Protobuf.Pack.game_option.Types.Type) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Pack.host_snap), global::Google.Protobuf.Pack.host_snap.Parser, new[]{ "SnapType", "MapName", "GameType", "FragLimit", "TimeLimit", "Options", "Players" }, null, new[]{ typeof(global::Google.Protobuf.Pack.host_snap.Types.Type) }, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Pack.host_snap), global::Google.Protobuf.Pack.host_snap.Parser, new[]{ "SnapType", "MapName", "GameType", "FragLimit", "TimeLimit", "MapId", "Options", "Players" }, null, new[]{ typeof(global::Google.Protobuf.Pack.host_snap.Types.Type) }, null)
           }));
     }
     #endregion
@@ -948,6 +948,7 @@ namespace Google.Protobuf.Pack {
       gameType_ = other.gameType_;
       fragLimit_ = other.fragLimit_;
       timeLimit_ = other.timeLimit_;
+      mapId_ = other.mapId_;
       options_ = other.options_.Clone();
       players_ = other.players_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -1013,10 +1014,21 @@ namespace Google.Protobuf.Pack {
       }
     }
 
+    /// <summary>Field number for the "map_id" field.</summary>
+    public const int MapIdFieldNumber = 6;
+    private int mapId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int MapId {
+      get { return mapId_; }
+      set {
+        mapId_ = value;
+      }
+    }
+
     /// <summary>Field number for the "options" field.</summary>
-    public const int OptionsFieldNumber = 6;
+    public const int OptionsFieldNumber = 7;
     private static readonly pb::FieldCodec<global::Google.Protobuf.Pack.game_option> _repeated_options_codec
-        = pb::FieldCodec.ForMessage(50, global::Google.Protobuf.Pack.game_option.Parser);
+        = pb::FieldCodec.ForMessage(58, global::Google.Protobuf.Pack.game_option.Parser);
     private readonly pbc::RepeatedField<global::Google.Protobuf.Pack.game_option> options_ = new pbc::RepeatedField<global::Google.Protobuf.Pack.game_option>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Google.Protobuf.Pack.game_option> Options {
@@ -1024,9 +1036,9 @@ namespace Google.Protobuf.Pack {
     }
 
     /// <summary>Field number for the "players" field.</summary>
-    public const int PlayersFieldNumber = 7;
+    public const int PlayersFieldNumber = 8;
     private static readonly pb::FieldCodec<global::Google.Protobuf.Pack.player> _repeated_players_codec
-        = pb::FieldCodec.ForMessage(58, global::Google.Protobuf.Pack.player.Parser);
+        = pb::FieldCodec.ForMessage(66, global::Google.Protobuf.Pack.player.Parser);
     private readonly pbc::RepeatedField<global::Google.Protobuf.Pack.player> players_ = new pbc::RepeatedField<global::Google.Protobuf.Pack.player>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Google.Protobuf.Pack.player> Players {
@@ -1051,6 +1063,7 @@ namespace Google.Protobuf.Pack {
       if (GameType != other.GameType) return false;
       if (FragLimit != other.FragLimit) return false;
       if (TimeLimit != other.TimeLimit) return false;
+      if (MapId != other.MapId) return false;
       if(!options_.Equals(other.options_)) return false;
       if(!players_.Equals(other.players_)) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -1064,6 +1077,7 @@ namespace Google.Protobuf.Pack {
       if (GameType != 0) hash ^= GameType.GetHashCode();
       if (FragLimit != 0) hash ^= FragLimit.GetHashCode();
       if (TimeLimit != 0) hash ^= TimeLimit.GetHashCode();
+      if (MapId != 0) hash ^= MapId.GetHashCode();
       hash ^= options_.GetHashCode();
       hash ^= players_.GetHashCode();
       if (_unknownFields != null) {
@@ -1099,6 +1113,10 @@ namespace Google.Protobuf.Pack {
         output.WriteRawTag(40);
         output.WriteInt32(TimeLimit);
       }
+      if (MapId != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(MapId);
+      }
       options_.WriteTo(output, _repeated_options_codec);
       players_.WriteTo(output, _repeated_players_codec);
       if (_unknownFields != null) {
@@ -1123,6 +1141,9 @@ namespace Google.Protobuf.Pack {
       }
       if (TimeLimit != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(TimeLimit);
+      }
+      if (MapId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapId);
       }
       size += options_.CalculateSize(_repeated_options_codec);
       size += players_.CalculateSize(_repeated_players_codec);
@@ -1151,6 +1172,9 @@ namespace Google.Protobuf.Pack {
       }
       if (other.TimeLimit != 0) {
         TimeLimit = other.TimeLimit;
+      }
+      if (other.MapId != 0) {
+        MapId = other.MapId;
       }
       options_.Add(other.options_);
       players_.Add(other.players_);
@@ -1185,11 +1209,15 @@ namespace Google.Protobuf.Pack {
             TimeLimit = input.ReadInt32();
             break;
           }
-          case 50: {
-            options_.AddEntriesFrom(input, _repeated_options_codec);
+          case 48: {
+            MapId = input.ReadInt32();
             break;
           }
           case 58: {
+            options_.AddEntriesFrom(input, _repeated_options_codec);
+            break;
+          }
+          case 66: {
             players_.AddEntriesFrom(input, _repeated_players_codec);
             break;
           }

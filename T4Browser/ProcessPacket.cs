@@ -96,6 +96,9 @@ namespace T4Browser
 
                     break;
 
+                case StartGame:
+
+                break;
             }
         }
     }

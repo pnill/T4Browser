@@ -29,6 +29,11 @@ namespace T4Browser
         {
             try
             {
+                /* The official install of the game sets these files as read only this will remove that attribute */
+                File.SetAttributes(game_path + "\\data\\history\\multiplayer.hst", FileAttributes.Normal);
+                File.SetAttributes(game_path + "\\data\\history\\multiadvancedoptions.hst", FileAttributes.Normal);
+                File.SetAttributes(game_path + "\\data\\history\\multiarsenal.hst", FileAttributes.Normal);
+
                 mp_hist = File.Open(game_path + "\\data\\history\\multiplayer.hst", FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
                 mp_advoptions = File.Open(game_path + "\\data\\history\\multiadvancedoptions.hst", FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
                 mp_arsenal = File.Open(game_path + "\\data\\history\\multiarsenal.hst", FileMode.Create, FileAccess.ReadWrite, FileShare.Read);

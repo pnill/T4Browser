@@ -36,7 +36,8 @@ namespace T4Browser
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while trying to save settings to the game!\r\nPlease ensure you have the appropriate permissions to write to the folder.\r\nAborting!");
+               
+                MessageBox.Show("An error occurred while trying to save settings to the game!\r\nPlease ensure you have the appropriate permissions to write to the folder.\r\nAborting!\r\nError: "+ex.Message);
                 Application.Exit();
             }
         }

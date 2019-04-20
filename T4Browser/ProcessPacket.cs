@@ -50,14 +50,14 @@ namespace T4Browser
                     {
                         lobby.RemovePlayer(pack.PlayerStatus.Name, pack.PlayerStatus);
                     });
-                break;
+                    break;
 
                 case HostSnapshot:
-                     lobby.Invoke(() =>
-                     {
-                         lobby.UpdateLobby(pack);
-                      });
-                break;
+                    lobby.Invoke(() =>
+                    {
+                        lobby.UpdateLobby(pack);
+                    });
+                    break;
 
                 case JoinMessage:
 
@@ -65,7 +65,7 @@ namespace T4Browser
 
                     lobby.Invoke(() =>
                     {
-                        lobby.AddPlayer(PlayerName,clientStream);
+                        lobby.AddPlayer(PlayerName, clientStream);
                     });
 
                     if (ishost)
@@ -75,7 +75,7 @@ namespace T4Browser
 
                         lobby_server.SendPacketToAll(pack);
                     }
-                break;
+                    break;
 
 
                 case ChatMessage:
@@ -97,7 +97,10 @@ namespace T4Browser
                     break;
 
                 case StartGame:
-
+                    lobby.Invoke(() =>
+                    { 
+                        lobby.GameStart();
+                    });
                 break;
             }
         }

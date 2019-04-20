@@ -282,7 +282,7 @@ namespace T4Browser
             data["T4MP"]["server"] = "0";
             data["T4MP"]["server_ip"] = IP_Address;
             data["T4MP"]["port"] = remote_port.ToString(); // Game uses UDP where browser uses TCP so port re-use is fine.
-            parser.WriteFile(browser.GameDir + "/T4MP.ini", data);
+            parser.WriteFile(browser.GameDir + "/T4MP.ini", data,Encoding.ASCII);
 
             lobby_client = new Lobby_Client(this, IP_Address, remote_port);
             lobby_client.Connect();
@@ -347,7 +347,7 @@ namespace T4Browser
             IniData data = new IniData();
             data["T4MP"]["server"] = "1";
             data["T4MP"]["port"] = remote_port.ToString();
-            parser.WriteFile(browser.GameDir + "/T4MP.ini", data);
+            parser.WriteFile(browser.GameDir + "/T4MP.ini", data,Encoding.ASCII);
 
             lobby_server = new Lobby_Server(this, remote_port);
             lobby_server.Listen();   
@@ -420,8 +420,12 @@ namespace T4Browser
             lobby_server.SendPacketToAll(chat_pack_parent);
 
             AddChatText("Server Notice", "Starting the game...");
-            Process.Start(browser.GameDir+"\\T4MP.exe");
-            
+
+            var startInfo = new ProcessStartInfo();
+            startInfo.WorkingDirectory = browser.GameDir;
+            startInfo.FileName = browser.GameDir + "\\T4MP.exe";
+            Process.Start(startInfo);
+
             /* Tell others to start game after...
              * Should possibly get some IPC going to only tell others to start after level load in-case host has slow PC.
              * That or force the client games to freeze the player in place and broadcast a 'connecting' message on the screen.
@@ -438,7 +442,10 @@ namespace T4Browser
             hist.map_id = map_id;
             hist.Save(GameOptions_List,WeaponAllowed_List,WeaponSpawn_List);
 
-            Process.Start(browser.GameDir + "\\T4MP.exe");
+            var startInfo = new ProcessStartInfo();
+            startInfo.WorkingDirectory = browser.GameDir;
+            startInfo.FileName = browser.GameDir + "\\T4MP.exe";
+            Process.Start(startInfo);
 
            
         }

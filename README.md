@@ -1,6 +1,6 @@
 # T4Browser
 Turok 4 Multiplayer Server Browser
-Only works with T4MP Mod: https://github.com/PermaNulled/T4MP
+Only works with T4MP Mod: https://github.com/pnill/T4MP
 
 An external browser which will show servers created for Turok 4 and allow joining them/chatting, it's not the ideal solution for the game but it'll work for now.
 
